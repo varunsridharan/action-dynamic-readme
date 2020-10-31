@@ -110,7 +110,7 @@ Reusable Includes :
 >
 > DO NOT COPY & PASTE THE BELOW TEXT it will not work properly. please do type it your self
 ---
-### For live Demo Please Check [Demo Repository](https://github.com/varunsridharan/demo-dynamic-readme)
+<h3 align="center"> For live Demo Please Check <a href="https://github.com/varunsridharan/demo-dynamic-readme">Demo Repository</a> </h3>
 ---
 
 ## 🚀 Example Workflow File
