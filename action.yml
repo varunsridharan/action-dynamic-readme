@@ -1,0 +1,39 @@
+name: 'Dynamic Readme'
+
+description: ''
+
+author: 'varunsridharan'
+
+branding:
+  icon: 'airplay'
+  color: 'blue'
+
+inputs:
+  files:
+    description: 'Enter Multiple by , seperated'
+    default: false
+    required: true
+
+  delimiter:
+    description: 'Delimiter which can be used to identify the template tags '
+    default: ''
+    required: false
+
+  template_engine:
+    description: 'Compiles the template files with provided template engine.'
+    default: 'mustache'
+    required: false
+
+  global_template_repository:
+    description: 'You Can Provide A Global Repository Where All Your Common Files Are Stored'
+    default: false
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.files }}
+    - ${{ inputs.delimiter }}
+    - ${{ inputs.template_engine }}
+    - ${{ inputs.global_template_repository }}
