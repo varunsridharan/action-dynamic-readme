@@ -158,7 +158,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-[Checkout CHANGELOG.md](https://github.com/varunsridharan/action-dynamic-readme/blob/master/CHANGELOG.md)
+[Checkout CHANGELOG.md](https://github.com/varunsridharan/action-dynamic-readme/blob/main/CHANGELOG.md)
 
 <!-- END readme-templates/changelog.mustache -->
 
@@ -171,7 +171,7 @@ If you would like to help, please take a look at the list of [issues](https://gi
 
 <!-- START readme-templates/license-and-conduct.mustache -->
 ## 📜  License & Conduct
-- [**MIT License**](https://github.com/varunsridharan/action-dynamic-readme/blob/master/LICENSE) © [Varun Sridharan](website)
+- [**MIT License**](https://github.com/varunsridharan/action-dynamic-readme/blob/main/LICENSE) © [Varun Sridharan](website)
 - [Code of Conduct](https://github.com/varunsridharan/.github/blob/master/CODE_OF_CONDUCT.md)
 
 <!-- END readme-templates/license-and-conduct.mustache -->
