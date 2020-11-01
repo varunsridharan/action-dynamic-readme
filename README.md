@@ -26,12 +26,12 @@ To overcome this limitation, and help developers such as myself automate this te
 >
 > DO NOT COPY & PASTE THE BELOW TEXT it will not work properly. please do type it your self
 
-* Variables : `$‎{{ VARIABLE_NAME }}`
-* File Includes
-    * Inline : `<‎!-- include {filepath} -->`
-    * Reusable
-        * Start : `<‎!-- START include {filepath} -->`
-        * END : `<‎!-- END include {filepath} -->`
+* Variables : <!-- START RAW_CONTENT -->`${{ VARIABLE_NAME }}`<!-- END RAW_CONTENT -->
+* Inline File Includes : <!-- START RAW_CONTENT -->`<!-- include {filepath} -->`<!-- END RAW_CONTENT -->
+* Reusable  File Includes :
+    * Start : <!-- START RAW_CONTENT -->`<!-- START include {filepath} -->`<!-- END RAW_CONTENT -->
+    * END : <!-- START RAW_CONTENT -->`<!-- END include {filepath} -->`<!-- END RAW_CONTENT -->
+
 ### Variables
 All Default vairables exposed by github actions runner can be accessed like `$‎{{ GITHUB_ACTIONS }}` OR  `$‎{{ GITHUB_ACTOR }}`
 
