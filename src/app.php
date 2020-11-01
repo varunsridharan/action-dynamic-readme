@@ -16,4 +16,4 @@ $dest = ( isset( $argv[2] ) ) ? $argv[2] : false;
 
 $instance = new File_Handler( $src, $dest );
 $template = new Update_Template( $instance->get_contents(), $instance );
-$instance->save( $template->update() );
+$instance->save( escape_content_to_raw( $template->update(), true ) );
