@@ -15,36 +15,43 @@ To overcome this limitation, and help developers such as myself automate this te
 
 
 ## ⚙️ Configuration
+<!-- START RAW_CONTENT -->
 | Option | Description | Default |
 | --- | --- | --- |
 | `FILES` | list of files that should be compiled.  | `false`
-| `DELIMITER` | you can change the default **DELIMITER** if it causes issue with your data.  | `$‎{{ }}`
+| `DELIMITER` | you can change the default **DELIMITER** if it causes issue with your data.  | `${{ }}`
 | `GLOBAL_TEMPLATE_REPOSITORY` | you can set a global repository template where all the files are stored. | `false`
+<!-- END RAW_CONTENT -->
 
 ## :writing_hand: Syntax 
 > :warning: To avoid rendering File Includes / variables in this readme, we have used a [emptycharacter](https://emptycharacter.com/) after `$` & `<`.
 >
 > DO NOT COPY & PASTE THE BELOW TEXT it will not work properly. please do type it your self
 
-* Variables : <!-- START RAW_CONTENT -->`${{ VARIABLE_NAME }}`<!-- END RAW_CONTENT -->
-* Inline File Includes : <!-- START RAW_CONTENT -->`<!-- include {filepath} -->`<!-- END RAW_CONTENT -->
+<!-- START RAW_CONTENT -->
+* Variables : `${{ VARIABLE_NAME }}`
+* Inline File Includes : `<!-- include {filepath} -->`
 * Reusable  File Includes :
-    * Start : <!-- START RAW_CONTENT -->`<!-- START include {filepath} -->`<!-- END RAW_CONTENT -->
-    * END : <!-- START RAW_CONTENT -->`<!-- END include {filepath} -->`<!-- END RAW_CONTENT -->
+    * Start : `<!-- START include {filepath} -->`
+    * END : `<!-- END include {filepath} -->`
 
 ### Variables
 All Default vairables exposed by github actions runner can be accessed like `$‎{{ GITHUB_ACTIONS }}` OR  `$‎{{ GITHUB_ACTOR }}`
+<!-- END RAW_CONTENT -->
 
 **Dynamic Readme Github Action** Uses [**Repository Meta - Github Action**](https://github.com/varunsridharan/action-repository-meta) which 
 exposes useful metadata as environment variable and those variables can be used as template tags.
 
 any variables exposed by **Repository Meta** can be accessed like below
+
+<!-- START RAW_CONTENT -->
 ```
-Repository Owner : $‎{{ env.REPOSITORY_OWNER }}
-Repository Full Name : $‎{{ env.REPOSITORY_FULL_NAME }}
+Repository Owner : ${{ env.REPOSITORY_OWNER }}
+Repository Full Name : ${{ env.REPOSITORY_FULL_NAME }}
 ```
 
-> :information_source: **Note :** Any environment variable can be accessed just by using `env.` as prefix `$‎{{ env.VARIABLE_NAME }}`
+> :information_source: **Note :** Any environment variable can be accessed just by using `env.` as prefix `${{ env.VARIABLE_NAME }}`
+<!-- END RAW_CONTENT -->
 
 ### File Includes
 #### Source Options
@@ -54,52 +61,61 @@ Repository Full Name : $‎{{ env.REPOSITORY_FULL_NAME }}
 
 #### Relative Path Syntax 
 Files are always searched from repository root path
+<!-- START RAW_CONTENT -->
 ```html
 Inline Includes : 
-<‎!-- include template/file.md -->
+<!-- include template/file.md -->
 
 Reusable Includes : 
-<‎!-- START template/file.md -->
+<!-- START template/file.md -->
 
-<‎!-- END template/file.md -->
+<!-- END template/file.md -->
 ```
+<!-- END RAW_CONTENT -->
 
 #### Absolute path  Syntax 
 Files are searched from current repository. This can come in handy when writing nested includesType a message
+<!-- START RAW_CONTENT -->
 ```html
 Inline Includes : 
-<‎!-- include ./template/file.md -->
+<!-- include ./template/file.md -->
 
 Reusable Includes : 
-<‎!-- START ./template/file.md -->
+<!-- START ./template/file.md -->
 
-<‎!-- END ./template/file.md -->
+<!-- END ./template/file.md -->
 ```
+<!-- END RAW_CONTENT -->
 
 #### From Repository  Syntax 
 You can include any type of file from any repository. If you want to include a file from a **Private Repository**, you have to provide **Github Personal Access** Token INSTEAD OF **Github Token** in the action's workflow file.
 > :information_source: If branch is not specified then default branch will be cloned
 
 ##### Without Branch
+<!-- START RAW_CONTENT -->
 ```html
 Inline Includes : 
-<‎!-- include octocat/Spoon-Knife/README.md -->
+<!-- include octocat/Spoon-Knife/README.md -->
 
 Reusable Includes : 
-<‎!-- START octocat/Spoon-Knife/README.md -->
+<!-- START octocat/Spoon-Knife/README.md -->
 
-<‎!-- END octocat/Spoon-Knife/README.md -->
+<!-- END octocat/Spoon-Knife/README.md -->
 ```
+<!-- END RAW_CONTENT -->
+
 ##### Custom Branch
+<!-- START RAW_CONTENT -->
 ```html
 Inline Includes : 
-<‎!-- include octocat/Spoon-Knife/@master/README.md -->
+<!-- include octocat/Spoon-Knife/@master/README.md -->
 
 Reusable Includes : 
-<‎!-- START octocat/Spoon-Knife/@master/README.md -->
+<!-- START octocat/Spoon-Knife/@master/README.md -->
 
-<‎!-- END octocat/Spoon-Knife/@master/README.md -->
+<!-- END octocat/Spoon-Knife/@master/README.md -->
 ```
+<!-- END RAW_CONTENT -->
 
 
 > :information_source: **Inline includes** can come in handy when you want to parse the data once and save it. It can also be used inside a nested include.
@@ -110,11 +126,13 @@ Reusable Includes :
 >
 > DO NOT COPY & PASTE THE BELOW TEXT it will not work properly. please do type it your self
 ---
+
 <h3 align="center"> For live Demo Please Check <a href="https://github.com/varunsridharan/demo-dynamic-readme">Demo Repository</a> </h3>
+
 ---
 
 ## 🚀 Example Workflow File
-
+<!-- START RAW_CONTENT -->
 ```yaml
 name: Dynamic Template
 
@@ -135,7 +153,7 @@ jobs:
       - name: "💾  Github Repository Metadata"
         uses: varunsridharan/action-repository-meta@main
         env:
-          GITHUB_TOKEN: $‎{{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "💫  Dynamic Template Render"
         uses: varunsridharan/action-dynamic-readme@main
@@ -146,8 +164,10 @@ jobs:
             FILE2.md=output_filename.md
             folder1/file.md=folder2/output.md
         env:
-          GITHUB_TOKEN: $‎{{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+<!-- END RAW_CONTENT -->
 
 ---
 

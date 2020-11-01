@@ -49,12 +49,18 @@ class Markdown_Handler {
 		$after  = '';
 		switch ( strtolower( $key ) ) {
 			case 'code':
-				$before = ( ! empty( $value ) ) ? '```' . $value : '```';
-				$after  = '```';
+				if ( strpos( $content, "\n" ) !== false ) {
+					$before = ( ! empty( $value ) ) ? '```' . $value : '```';
+					$before .= PHP_EOL;
+					$after  = PHP_EOL . '```';
+				} else {
+					$before = '`';
+					$after  = '`';
+				}
 				break;
 			case 'blockquote':
-				$before = '<blockquote>';
-				$after  = '</blockquote>';
+				$before = '<blockquote>' . PHP_EOL;
+				$after  = PHP_EOL . '</blockquote>';
 				break;
 			case 'raw':
 			case 'escape':
@@ -62,8 +68,6 @@ class Markdown_Handler {
 				break;
 		}
 
-		$before  = ( ! empty( $before ) ) ? $before . PHP_EOL : $before;
-		$after   = ( ! empty( $after ) ) ? $after . PHP_EOL : $after;
 		$content = $before . $content . $after;
 		return $content;
 	}
