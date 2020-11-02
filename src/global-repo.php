@@ -17,8 +17,8 @@ if ( ! empty( $global_template_repository ) ) {
 		$repo_dir      = $repo_instance->get_path();
 		$path          = ( isset( $matches['path'] ) && ! empty( $matches['path'] ) ) ? $matches['path'] : false;
 		if ( ( ! empty( $path ) && is_dir( $repo_dir . $path ) ) || is_dir( $repo_instance->get_path() ) ) {
-			$content = ( ! empty( $path ) ) ? $repo_dir . $path . '/' : $repo_dir;
-			file_put_contents( APP_PATH . 'global-repo', $content );
+			$content = ( ! empty( $path ) ) ? $repo_dir . $path : $repo_dir;
+			file_put_contents( APP_PATH . 'global-repo', trailingslashit( $content ) );
 		} else {
 			gh_log_error( 'Unable To Fetch Global Template Repository !' );
 		}
