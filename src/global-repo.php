@@ -16,12 +16,8 @@ if ( ! empty( $global_template_repository ) ) {
 		$repo_instance = new Repository_Cloner( $matches['login'], $matches['repo'], $matches['branch'] );
 		$repo_dir      = $repo_instance->get_path();
 		$path          = ( isset( $matches['path'] ) && ! empty( $matches['path'] ) ) ? $matches['path'] : false;
-		gh_log( 'repo_dir : ' . $repo_dir );
-		gh_log( 'PATH : ' . $path );
 		if ( ( ! empty( $path ) && is_dir( $repo_dir . $path ) ) || is_dir( $repo_instance->get_path() ) ) {
-			gh_log( 'Success' );
-			$content = ( ! empty( $path ) ) ? $repo_dir . $path : $repo_dir;
-			gh_log( 'Full Path' . $content );
+			$content = ( ! empty( $path ) ) ? $repo_dir . $path . '/' : $repo_dir;
 			file_put_contents( APP_PATH . 'global-repo', $content );
 		} else {
 			gh_log_error( 'Unable To Fetch Global Template Repository !' );
