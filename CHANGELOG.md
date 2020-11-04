@@ -21,5 +21,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 -->
 
+## 1.1 - 03/11/2020
+### Added
+* Option to print content in raw format `<!-- include RAW -->` | `<!-- START RAW --> <!-- END RAW -->`
+
+### Changed
+* Updated Markdown Handler
+* Improved Speed
+
 ## 1.0 - 31/10/2020
 ### First Releases

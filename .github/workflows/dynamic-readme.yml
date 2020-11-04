@@ -16,6 +16,9 @@ jobs:
     name: "Render & Update ReadME"
     runs-on: ubuntu-latest
     steps:
+      - name: "📥  Fetching Repository Contents"
+        uses: actions/checkout@main
+
       - name: "💾  Github Repository Metadata"
         uses: varunsridharan/action-repository-meta@main
         env:
@@ -36,7 +39,7 @@ jobs:
           echo " "
 
       - name: "💫  Update README.md"
-        uses: "./"
+        uses: "varunsridharan/action-dynamic-readme@main"
         with:
           GLOBAL_TEMPLATE_REPOSITORY: varunsridharan/varunsridharan@main/readme-templates
           files: |
