@@ -5,8 +5,8 @@ description: 'Convert Static Readme into Dynamic Readme'
 author: 'varunsridharan'
 
 branding:
-  icon: 'airplay'
-  color: 'blue'
+  icon: 'book-open'
+  color: 'orange'
 
 inputs:
   files:
