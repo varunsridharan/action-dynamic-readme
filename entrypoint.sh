@@ -5,7 +5,7 @@ source /gh-toolkit/shell.sh
 
 gh_log ""
 
-gitconfig "Github Action Dynamic Template"
+gitconfig "Dynamic Readme" "githubactionbot+dynamicreadme@gmail.com"
 
 gh_validate_input "FILES" "FILES List is required"
 
