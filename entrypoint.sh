@@ -16,13 +16,7 @@ if [ -z "$GITHUB_TOKEN" ]; then
 fi
 
 if [ -z "$REPOSITORY_SLUG" ]; then
-  gh_log_warning "Repository Meta Information Not Found"
-  gh_log "ℹ︎ Using https://github.com/varunsridharan/action-repository-meta Action To Fetch Meta Information"
-  cd /
-  git clone https://github.com/varunsridharan/action-repository-meta
-  cp -r action-repository-meta/app /gh-repo-meta/
-  sh action-repository-meta/entrypoint.sh
-  echo " "
+  gh_log "ℹ︎ Please Use https://github.com/varunsridharan/action-repository-meta Action to expose useful variables"
 fi
 
 RAW_FILES=$(gh_input "FILES")

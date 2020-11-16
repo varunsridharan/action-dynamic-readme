@@ -21,6 +21,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 -->
 
+## 1.2 - 16/11/2020
+### Removed
+* Since `action-repository-meta` converted to nodeJS. so we removed it as a dependency instead now it shows a notice.
+
 ## 1.1 - 06/11/2020
 ### Added
 * Option to print content in raw format `<!-- include RAW -->` | `<!-- START RAW --> <!-- END RAW -->`
