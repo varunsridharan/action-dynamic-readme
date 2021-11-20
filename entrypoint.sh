@@ -54,8 +54,15 @@ for FILE in "${FILES[@]}"; do
   php /dynamic-readme/app.php "${SRC_FILE}" "${DEST_FILE}"
   gh_log ""
 
-  git add -A
+  git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
 
+  if [ "$(git status --porcelain)" != "" ]; then
+    git commit -m "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
+  else
+    gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
+  fi
   gh_log_group_end
 done
+gh_log ""
+git push $GIT_URL
 gh_log ""
