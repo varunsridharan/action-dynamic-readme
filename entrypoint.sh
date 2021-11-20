@@ -56,7 +56,7 @@ for FILE in "${FILES[@]}"; do
   php /dynamic-readme/app.php "${SRC_FILE}" "${DEST_FILE}"
   gh_log ""
 
-  if [ "$CONFIRM_AND_PUSH" ]; then
+  if [ "$CONFIRM_AND_PUSH" == true ]; then
     gh_log "🚀 Confirm and push is the strategy used"
 
     git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
@@ -75,7 +75,7 @@ for FILE in "${FILES[@]}"; do
 done
 gh_log ""
 
-if [ "$CONFIRM_AND_PUSH" ]; then
+if [ "$CONFIRM_AND_PUSH" == true ]; then
   git push $GIT_URL
 fi
 
