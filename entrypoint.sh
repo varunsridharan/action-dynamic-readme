@@ -68,6 +68,7 @@ for FILE in "${FILES[@]}"; do
       gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
     fi
   else
+    gh_log " 📥 Adding changes to staging area "
     git add -A
   fi
 
