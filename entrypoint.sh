@@ -57,7 +57,8 @@ for FILE in "${FILES[@]}"; do
   git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
 
   if [ "$(git status --porcelain)" != "" ]; then
-    git commit -m "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
+    COMMIT_MESSAGE=$(gh_input "COMMIT_MESSAGE")
+    git commit -m "$COMMIT_MESSAGE"
   else
     gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
   fi

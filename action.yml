@@ -39,6 +39,11 @@ inputs:
     default: githubactionbot+dynamicreadme@gmail.com
     required: false
 
+  commit_message:
+    description: "set a custom commit message"
+    default: "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
+    required: false
+
 runs:
   using: "docker"
   image: "Dockerfile"
