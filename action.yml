@@ -44,6 +44,11 @@ inputs:
     default: "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
     required: false
 
+  confirm_and_push:
+    description: "Commit the changes and push directly to repository"
+    default: true
+    required: false
+
 runs:
   using: "docker"
   image: "Dockerfile"

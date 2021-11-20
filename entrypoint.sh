@@ -54,16 +54,27 @@ for FILE in "${FILES[@]}"; do
   php /dynamic-readme/app.php "${SRC_FILE}" "${DEST_FILE}"
   gh_log ""
 
-  git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
+  CONFIRM_AND_PUSH=$(gh_input "CONFIRM_AND_PUSH")
 
-  if [ "$(git status --porcelain)" != "" ]; then
-    COMMIT_MESSAGE=$(gh_input "COMMIT_MESSAGE")
-    git commit -m "$COMMIT_MESSAGE"
+  if [ "$CONFIRM_AND_PUSH" ]; then
+    git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
+
+    if [ "$(git status --porcelain)" != "" ]; then
+      COMMIT_MESSAGE=$(gh_input "COMMIT_MESSAGE")
+      git commit -m "$COMMIT_MESSAGE"
+    else
+      gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
+    fi
   else
-    gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
+    git add -A
   fi
+
   gh_log_group_end
 done
 gh_log ""
-git push $GIT_URL
+
+if [ "$CONFIRM_AND_PUSH" ]; then
+  git push $GIT_URL
+fi
+
 gh_log ""
