@@ -5,6 +5,8 @@ source /gh-toolkit/shell.sh
 
 gh_log ""
 
+CONFIRM_AND_PUSH=$(gh_input "CONFIRM_AND_PUSH")
+
 COMMITTER_NAME=$(gh_input "COMMITTER_NAME")
 COMMITTER_EMAIL=$(gh_input "COMMITTER_EMAIL")
 
@@ -54,9 +56,9 @@ for FILE in "${FILES[@]}"; do
   php /dynamic-readme/app.php "${SRC_FILE}" "${DEST_FILE}"
   gh_log ""
 
-  CONFIRM_AND_PUSH=$(gh_input "CONFIRM_AND_PUSH")
-
   if [ "$CONFIRM_AND_PUSH" ]; then
+    gh_log "🚀 Confirm and push is the strategy used"
+
     git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
 
     if [ "$(git status --porcelain)" != "" ]; then
