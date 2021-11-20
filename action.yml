@@ -1,37 +1,47 @@
-name: 'Dynamic Readme'
+name: "Dynamic Readme"
 
-description: 'Convert Static Readme into Dynamic Readme'
+description: "Convert Static Readme into Dynamic Readme"
 
-author: 'varunsridharan'
+author: "varunsridharan"
 
 branding:
-  icon: 'book-open'
-  color: 'orange'
+  icon: "book-open"
+  color: "orange"
 
 inputs:
   files:
-    description: 'Enter Multiple by , seperated'
+    description: "Enter Multiple by , seperated"
     default: false
     required: true
 
   delimiter:
-    description: 'Delimiter which can be used to identify the template tags '
-    default: ''
+    description: "Delimiter which can be used to identify the template tags "
+    default: ""
     required: false
 
   template_engine:
-    description: 'Compiles the template files with provided template engine.'
-    default: 'mustache'
+    description: "Compiles the template files with provided template engine."
+    default: "mustache"
     required: false
 
   global_template_repository:
-    description: 'You Can Provide A Global Repository Where All Your Common Files Are Stored'
+    description: "You Can Provide A Global Repository Where All Your Common Files Are Stored"
     default: false
     required: false
 
+  committer_name:
+    description: "Specify the committer name"
+    default: Dynamic Readme
+    required: false
+
+  committer_email:
+    description: "Specify the committer email"
+    default: githubactionbot+dynamicreadme@gmail.com
+    required: false
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.files }}
     - ${{ inputs.delimiter }}

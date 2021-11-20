@@ -5,7 +5,10 @@ source /gh-toolkit/shell.sh
 
 gh_log ""
 
-gitconfig "github-actions[bot]" "github-actions[bot]@users.noreply.github.com"
+COMMITER_NAME=$(gh_input "COMMITTER_NAME")
+COMMITER_EMAIL=$(gh_input "COMMITTER_EMAIL")
+
+gitconfig ($COMMITER_NAME) ($COMMITER_EMAIL)
 
 gh_validate_input "FILES" "FILES List is required"
 
