@@ -62,7 +62,5 @@ for FILE in "${FILES[@]}"; do
   gh_log_group_end
 done
 gh_log ""
-if [ false ]; then
-  git push $GIT_URL
-fi
+git push
 gh_log ""
