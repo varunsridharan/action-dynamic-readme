@@ -69,7 +69,6 @@ for FILE in "${FILES[@]}"; do
     fi
   else
     gh_log " 📥 Adding changes to staging area "
-    git add -A
   fi
 
   gh_log_group_end
