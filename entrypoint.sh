@@ -5,10 +5,10 @@ source /gh-toolkit/shell.sh
 
 gh_log ""
 
-COMMITER_NAME=$(gh_input "COMMITTER_NAME")
-COMMITER_EMAIL=$(gh_input "COMMITTER_EMAIL")
+COMMITTER_NAME=$(gh_input "COMMITTER_NAME")
+COMMITTER_EMAIL=$(gh_input "COMMITTER_EMAIL")
 
-gitconfig ($COMMITER_NAME) ($COMMITER_EMAIL)
+gitconfig "$COMMITTER_NAME" "$COMMITTER_EMAIL"
 
 gh_validate_input "FILES" "FILES List is required"
 
