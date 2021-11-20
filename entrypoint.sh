@@ -52,15 +52,7 @@ for FILE in "${FILES[@]}"; do
   gh_log ""
 
   git add -A
-  git status
 
-  if [ "$(git status --porcelain)" != "" ]; then
-    git commit -m "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
-  else
-    gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
-  fi
   gh_log_group_end
 done
-gh_log ""
-git push
 gh_log ""
