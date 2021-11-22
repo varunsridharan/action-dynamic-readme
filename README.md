@@ -21,6 +21,10 @@ To overcome this limitation, and help developers such as myself automate this te
 | `FILES` | list of files that should be compiled.  | `false`
 | `DELIMITER` | you can change the default **DELIMITER** if it causes issue with your data.  | `${{ }}`
 | `GLOBAL_TEMPLATE_REPOSITORY` | you can set a global repository template where all the files are stored. | `false`
+| `committer_name` | Specify the committer name | `Dynamic Readme` |
+| `committer_email` | Specify the committer email | `githubactionbot+dynamicreadme@gmail.com` |
+| `commit_message` | set a custom commit message | `💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}` |
+| `confirm_and_push` | Commit the changes and push directly to repository | `true` |
 <!-- END RAW_CONTENT -->
 
 ## :writing_hand: Syntax 
@@ -183,6 +187,80 @@ jobs:
             folder1/file.md=folder2/output.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+<!-- END RAW_CONTENT -->
+
+## 🚀 Example Workflow File (Pull Request)
+
+<!-- START RAW_CONTENT -->
+```yaml
+name: Dynamic Template
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update_templates:
+    name: "Update Templates"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥  Fetching Repository Contents"
+        uses: actions/checkout@main
+
+      - name: "💾  Github Repository Metadata"
+        uses: varunsridharan/action-repository-meta@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "💫  Dynamic Template Render"
+        uses: varunsridharan/action-dynamic-readme@main
+        with:
+          GLOBAL_TEMPLATE_REPOSITORY: {repository-owner}/{repository-name}
+          files: |
+            FILE.md
+            FILE2.md=output_filename.md
+            folder1/file.md=folder2/output.md
+          committer_name: github-actions[bot]
+          committer_email: github-actions[bot]@users.noreply.github.com
+          commit_message: 'docs: update readme file [skip ci]'
+          confirm_and_push: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'docs: documentation files updated [skip ci]'
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          signoff: false
+          branch: github-actions/repository-maintenance
+          delete-branch: true
+          title: Update documentation files
+          body: All documentation files has been updated to last recent version
+          labels: |
+            skip-changelog
+            docs
+
+      - name: Enable pull request automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+
+      - name: Auto approve
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.PAT }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}
 ```
 
 <!-- END RAW_CONTENT -->
