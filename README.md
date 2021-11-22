@@ -23,7 +23,7 @@ To overcome this limitation, and help developers such as myself automate this te
 | `GLOBAL_TEMPLATE_REPOSITORY` | you can set a global repository template where all the files are stored. | `false`
 | `committer_name` | Specify the committer name | `Dynamic Readme` |
 | `committer_email` | Specify the committer email | `githubactionbot+dynamicreadme@gmail.com` |
-| `commit_message` | set a custom commit message | ` 💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER} ` |
+| `commit_message` | set a custom commit message | `💬 - File Rebuilt - Github Action Runner : ${GITHUB_RUN_NUMBER}` |
 | `confirm_and_push` | Commit the changes and push directly to repository | `true` |
 <!-- END RAW_CONTENT -->
 

@@ -41,7 +41,7 @@ inputs:
 
   commit_message:
     description: "set a custom commit message"
-    default: "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
+    default: "💬 - File Rebuilt - Github Action Runner : ${GITHUB_RUN_NUMBER}"
     required: false
 
   confirm_and_push:
