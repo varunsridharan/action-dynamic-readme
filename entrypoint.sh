@@ -5,7 +5,12 @@ source /gh-toolkit/shell.sh
 
 gh_log ""
 
-gitconfig "Dynamic Readme" "githubactionbot+dynamicreadme@gmail.com"
+CONFIRM_AND_PUSH=$(gh_input "CONFIRM_AND_PUSH")
+
+COMMITTER_NAME=$(gh_input "COMMITTER_NAME")
+COMMITTER_EMAIL=$(gh_input "COMMITTER_EMAIL")
+
+gitconfig "$COMMITTER_NAME" "$COMMITTER_EMAIL"
 
 gh_validate_input "FILES" "FILES List is required"
 
@@ -51,15 +56,25 @@ for FILE in "${FILES[@]}"; do
   php /dynamic-readme/app.php "${SRC_FILE}" "${DEST_FILE}"
   gh_log ""
 
-  git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
+  if [ "$CONFIRM_AND_PUSH" == true ]; then
+    gh_log "🚀 Confirm and push is the strategy used"
 
-  if [ "$(git status --porcelain)" != "" ]; then
-    git commit -m "💬 - File Rebuilt | Github Action Runner : ${GITHUB_RUN_NUMBER}"
-  else
-    gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
+    git add "${GITHUB_WORKSPACE}/${DEST_FILE}" -f
+
+    if [ "$(git status --porcelain)" != "" ]; then
+      COMMIT_MESSAGE=$(gh_input "COMMIT_MESSAGE")
+      git commit -m "$COMMIT_MESSAGE"
+    else
+      gh_log "  ✅ No Changes Are Done : ${SRC_FILE}"
+    fi
   fi
+
   gh_log_group_end
 done
 gh_log ""
-git push $GIT_URL
+
+if [ "$CONFIRM_AND_PUSH" == true ]; then
+  git push $GIT_URL
+fi
+
 gh_log ""
