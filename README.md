@@ -331,7 +331,7 @@ If you would like to help, please take a look at the list of [issues](https://gi
 
 ## 📜  License & Conduct
 - [**MIT License**](https://github.com/varunsridharan/action-dynamic-readme/blob/main/LICENSE) © [Varun Sridharan](website)
-- [Code of Conduct](https://github.com/varunsridharan/.github/blob/master/CODE_OF_CONDUCT.md)
+- [Code of Conduct](https://github.com/varunsridharan/.github/blob/main/CODE_OF_CONDUCT.md)
 
 
 ## 📣 Feedback
